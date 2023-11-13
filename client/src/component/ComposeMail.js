@@ -165,7 +165,7 @@ export default function ComposeMail({openDialog,setOpenDialog}) {
         sx: {
           ...dialogStyle,
           height: maximized ? '94%' : dialogStyle.height,
-          width: maximized ? '78%' : dialogStyle.width,
+          width: maximized ? '75%' : dialogStyle.width,
           position:maximized?'':'absolute',
           bottom:maximized?'':0,
           right:maximized?'':0

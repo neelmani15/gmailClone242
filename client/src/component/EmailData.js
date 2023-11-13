@@ -41,7 +41,6 @@ const Date = styled(Typography)({
 export default function EmailData({email,selectedEmails,setStarredEmail,setSelectedEmails}) {
     const toggleStarredEmailService = useApi(API_URLS.toggleStarredMails);
     const navigate = useNavigate();
-
     const toggleStarredEmail = () => {
         toggleStarredEmailService.call({ id: email._id, value: !email.starred });
         setStarredEmail(prevState => !prevState);

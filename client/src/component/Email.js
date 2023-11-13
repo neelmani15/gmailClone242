@@ -7,6 +7,7 @@ import { DeleteOutline, Refresh,MoreVert, ArrowBackIos, ArrowForwardIos, Keyboar
 import EmailData from './EmailData';
 import NoMails from './NoMails';
 import { EMPTY_TABS } from '../constants/constant';
+import Emailtype from './Emailtype';
 
 
 export default function Email() {
@@ -39,9 +40,6 @@ export default function Email() {
     }
   return (
     <div style={openDrawer ? {marginLeft:250,width:'calc(100%-250px)'}:{width:'100%'}}>
-        <Box>
-            {/* <Typography>First Box</Typography> */}
-        </Box>
         <Box style={{padding:'10px 10px 0 10px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
             <Box style={{display:'flex',alignItems:'center'}}>
                 <Checkbox size='small' onChange={(e) => selectAllEmails(e)} />
@@ -56,6 +54,7 @@ export default function Email() {
                 <Keyboard fontSize='15px' style={{padding:'0 3px'}} />
             </Box>
         </Box>
+        <Emailtype />
         <List>
             {
                 getEmailsService?.response?.map(email=>(

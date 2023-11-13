@@ -12,18 +12,21 @@ import { Close,
     ImageOutlined,
     LockClockOutlined,
     CreateOutlined,
-    MoreVert
+    MoreVert,
+    CloseFullscreen
 } from '@mui/icons-material';
 
 import useApi from '../hooks/useApi';
 import { API_URLS } from '../services/apiUrl';
 
 const dialogStyle = {
-    height:'65%',
-    width:'55%',
-    position:'absolute',
-    bottom:0,
-    right:0,
+    height:'68%',
+    width:'42%',
+    maxWidth:'100%',
+    maxHeight:'100%',
+    // position:'absolute',
+    // bottom:0,
+    // right:0,
     boxshadow:'none',
     borderRadius:'10px 10px 0 0',
 }
@@ -54,7 +57,7 @@ const FooterWrapper = styled(Box)({
     display:'flex',
     alignItems:'center',
     justifyContent:'space-between',
-    padding:'6px 10px'
+    padding:'15px 10px'
 });
 
 const SendButton = styled(Button)({
@@ -74,8 +77,18 @@ const Wrapper = styled(Box)({
 
 export default function ComposeMail({openDialog,setOpenDialog}) {
     const [data,setData]=useState({});
+    const [maximized, setMaximized] = useState(false);
     const sentEmailService = useApi(API_URLS.saveSentEmail);
     const saveDraftService = useApi(API_URLS.saveDraftEmails);
+
+    const toggleMaximize = () => {
+        setMaximized(!maximized);
+    };
+
+    const toggleMinimize = () => {
+        setOpenDialog(false);
+    };
+
     const config={
         Host : "smtp.elasticemail.com",
         Username : process.env.REACT_APP_USERNAME,
@@ -148,13 +161,22 @@ export default function ComposeMail({openDialog,setOpenDialog}) {
   return (
     <Dialog 
         open={openDialog}
-        PaperProps={{sx:dialogStyle}}
+        PaperProps={{
+        sx: {
+          ...dialogStyle,
+          height: maximized ? '90%' : dialogStyle.height,
+          width: maximized ? '80%' : dialogStyle.width,
+          position:maximized?'':'absolute',
+          bottom:maximized?'':0,
+          right:maximized?'':0
+        },
+      }}
     >
         <Headers>
             <Typography>New Message</Typography>
             <Box>
-                <Minimize fontSize='14px' />
-                <OpenInFull fontSize='14px' />
+                <Minimize fontSize='14px' onClick={toggleMinimize} />
+                {maximized ?<CloseFullscreen fontSize='14px' onClick={toggleMaximize} />:<OpenInFull fontSize='14px' onClick={toggleMaximize} />}
                 <Close fontSize='14px' onClick={(e)=>closeComposeMail(e)} />
             </Box>
         </Headers>
@@ -169,7 +191,7 @@ export default function ComposeMail({openDialog,setOpenDialog}) {
             onChange={(e)=>onValueChange(e)}
             name='body'
         />
-        <FooterWrapper>
+        <FooterWrapper style={{paddingTop:maximized ? 180:''}}>
             <Wrapper>
                 <SendButton onClick={(e)=>sendMail(e)}>Send</SendButton>
                 <FormatColorText fontSize='small' style={{padding:'0 3px'}} />

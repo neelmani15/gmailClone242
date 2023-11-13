@@ -191,7 +191,7 @@ export default function ComposeMail({openDialog,setOpenDialog}) {
             onChange={(e)=>onValueChange(e)}
             name='body'
         />
-        <FooterWrapper style={{paddingTop:maximized ? 140:''}}>
+        <FooterWrapper style={{paddingTop:maximized ? 160:''}}>
             <Wrapper>
                 <SendButton onClick={(e)=>sendMail(e)}>Send</SendButton>
                 <FormatColorText fontSize='small' style={{padding:'0 3px'}} />

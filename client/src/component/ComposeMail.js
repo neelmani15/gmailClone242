@@ -20,7 +20,7 @@ import useApi from '../hooks/useApi';
 import { API_URLS } from '../services/apiUrl';
 
 const dialogStyle = {
-    height:'68%',
+    height:'72%',
     width:'42%',
     maxWidth:'100%',
     maxHeight:'100%',
@@ -164,8 +164,8 @@ export default function ComposeMail({openDialog,setOpenDialog}) {
         PaperProps={{
         sx: {
           ...dialogStyle,
-          height: maximized ? '90%' : dialogStyle.height,
-          width: maximized ? '80%' : dialogStyle.width,
+          height: maximized ? '94%' : dialogStyle.height,
+          width: maximized ? '78%' : dialogStyle.width,
           position:maximized?'':'absolute',
           bottom:maximized?'':0,
           right:maximized?'':0

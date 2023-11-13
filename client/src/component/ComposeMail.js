@@ -164,7 +164,7 @@ export default function ComposeMail({openDialog,setOpenDialog}) {
         PaperProps={{
         sx: {
           ...dialogStyle,
-          height: maximized ? '92%' : dialogStyle.height,
+          height: maximized ? '96%' : dialogStyle.height,
           width: maximized ? '70%' : dialogStyle.width,
           position:maximized?'':'absolute',
           bottom:maximized?'':0,
